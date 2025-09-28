@@ -1,0 +1,172 @@
+<html>
+  <head>
+    <title>Login Page</title>
+    <link rel="shortcut icon" href="login icon.png">
+    <link rel="stylesheet" href="AccountCSS.css">
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Comic Sans MS";
+        }
+
+        .hero {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(backgroud.jpg);
+            background-position: center;
+            background-size: cover;
+            position: absolute;
+        }
+
+        .form-box {
+            width: 380px;
+            height: 480px;
+            background: #fff;
+            padding: 5px;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .button-box {
+            width: 220px;
+            margin: 35px auto;
+            position: relative;
+            box-shadow: 0 0 -20px 9px #ed892b1f;
+            border-radius: 30px;
+        }
+
+        .toggle-btn {
+            padding: 10px 30px;
+            cursor: pointer;
+            background: transparent;
+            border: 0;
+            outline: none;
+            position: relative;
+        }
+
+        #btn {
+            top: 0;
+            left: 0;
+            position: absolute;
+            width: 110px;
+            height: 100%;
+            background: linear-gradient(to right, #a4afb0, #2480b8);
+            border-radius: 30px;
+            transition: .5s;
+        }
+
+        .input-group {
+            margin-top: 30px;
+            width: 280px;
+            margin: 0 auto;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px 0;
+            margin: 5px 0;
+            border-left: 0;
+            border-top: 0;
+            border-right: 0;
+            border-bottom: 1px solid #999;
+            outline: none;
+            background: transparent;
+        }
+
+        .submit-btn {
+            width: 85%;
+            padding: 10px 30px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            background: linear-gradient(to right, #a4afb0, #2480b8);
+            border: 0;
+            outline: none;
+            border-radius: 30px;
+        }
+
+        .check-box {
+            margin: 30px 10px 30px 0;
+        }
+
+        span {
+            color: #777;
+            font-size: 12px;
+            bottom: 68px;
+            position: absolute;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .login-logo {
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .login-logo img {
+            width: 70px;
+        }
+
+        .toggle-password {
+            width: 20px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .password-container {
+            position: relative;
+        }
+    </style> -->
+  </head>
+  <body>
+    <div class="hero">
+        <img src="logo.png" alt="Logo" class="logo">
+        <div class="form-box">
+            <div class="res-logo">
+                <img src="login logo.png">
+            </div>
+            <form id="register" class="res-input-group">
+                <input type="text" class="input-field" placeholder="First Name" required>
+                <input type="text" class="input-field" placeholder="Last Name" required>
+                <input type="email" class="input-field" placeholder="Email" required>
+                <div class="password-container">
+                    <input type="password" id="password" class="input-field" placeholder="Create Password" required>
+                    <img src="eye-close.png" alt="Toggle Password" class="toggle-password" onclick="togglePassword()">
+                </div>
+                <div style="position: relative; margin-top: 10px;">
+                    <input type="checkbox" class="check-box">
+                    <span style="color: #777; font-size: 12px; position: absolute; top: 37%; transform: translateY(-50%);">I agree to the terms and conditions</span>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+            
+        </div>
+    </div>
+    <script>
+       function togglePassword() {
+          var passwordField = document.getElementById("password");
+          var toggleIcon = document.querySelector(".toggle-password");
+
+          if (passwordField.type === "password") {
+              passwordField.type = "text";
+              toggleIcon.src = "eye-open.png"; 
+          } else {
+              passwordField.type = "password";
+              toggleIcon.src = "eye-close.png"; 
+          }
+      }
+    </script>
+  </body>
+</html>
+

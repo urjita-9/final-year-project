@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="theatre.css">
+    <link rel="shortcut icon" href="theater-icon.png">
+    <title>Theatres</title>
+
+    <style>
+        
+body {
+    font-family: "Lucida Sans";
+    margin: 0;
+    padding: 0;
+    background-color: #1e1f26;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3 ease;
+}
+
+.theatre-list {
+    margin: 20px auto;
+    max-width: 90%;
+    padding: 20px;
+    background-color: #b4afaf;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.theatre-list h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    color: #f0f0f0;
+    background-color: #1e1f26;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+li:hover {
+    background-color: #393b46;
+}
+
+h2 {
+    margin-left: -80%;
+    margin-top: 0%;
+}
+
+.li-westend::after {
+    content: "";
+    background-image: url('theatre/westend.jpg');
+}
+
+.li-esquare::after {
+    content: "";
+    background-image: url('theatre/e-square.png');
+}
+
+.li-mangala::after {
+    content: "";
+    background-image: url('theatre/mangala.png');
+}
+
+.li-pvr::after {
+    content: "";
+    background-image: url('theatre/pvr.png');
+}
+
+
+li::after {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar{
+    width: 1vw;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #404343;
+}
+
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(#2d645b, #64c0af);
+    border-radius: 1rem;
+}
+
+.search-container {
+    position: relative;
+    margin-top: -5vh;
+    padding-left: 1vw;
+    border-radius: 30px;
+    padding-right: 1.5vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar{
+    width: 40vw;
+    padding-left: 45vw;
+    height: 5vh;
+
+}
+
+input[type="text"] {
+    padding: 1vw;
+    width: 30vw;
+    height: 2vh;
+    border: 0px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    /* text-align: left; */
+}
+
+input[type="text"]:focus {
+        outline: none;  
+        border-color: transparent;  
+        box-shadow: none; 
+    }
+
+.suggestions-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fffbfb;
+    border: 0px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestions-container div {
+    padding: 10px;
+    cursor: pointer;
+    border: 0px solid #ccc;
+    color: black; 
+    text-align: left;
+}
+
+.suggestions-container div:last-child {
+    border-bottom: none;
+}
+
+    </style>
+</head>
+<body>
+
+<section class="theatre-list">
+    <h2>Popular Theatres</h2>
+
+    <div class="search-bar" onclick="showSlides()">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search Movies...." autocomplete="off">
+            <div id="suggestions-container" class="suggestions-container"></div>
+        </div>
+    </div>
+
+    <ul>
+        <div>
+            <li class="li-westend"><a href="shaitaan.html"> Cinepolis : Nexus WESTEND Mall Aundh</a></li>
+        </div>
+        <li class="li-esquare"><a href="dune.html">E-SQUARE ELITE : Xion Mall, Hinjewadi</a></li>
+        <div>
+            <li class="li-mangala"><a href="animal.html">City Pride : Mangala Cinema</a></li>
+        </div>
+        <div>
+            <li class="li-pvr"><a href="marvels.html">PVR : Icon, The Pavillion</a></li>
+        </div>
+    </ul>
+</section>
+
+<script>
+      const searchInput = document.getElementById('searchInput');
+    const suggestionsContainer = document.getElementById('suggestions-container');
+    
+    const movies = [
+        "Cinepolis", 
+        "E-Square",
+        "City pride",
+        "PVR",
+        "Theatre 5",
+        "Theatre 6",
+        "Theatre 7",
+    ];
+
+    // Add an event listener to the search input
+searchInput.addEventListener('input', function() {
+    const userInput = searchInput.value.toLowerCase(); // Get user input and convert to lowercase
+    const suggestions = movies.filter(movie => movie.toLowerCase().startsWith(userInput)); // Filter movies based on user input
+    
+    // Clear previous suggestions
+    suggestionsContainer.innerHTML = '';
+
+    // Display suggestions
+    suggestions.forEach(suggestion => {
+        const div = document.createElement('div');
+        div.textContent = suggestion;
+        suggestionsContainer.appendChild(div);
+    });
+});
+
+</script>
+</body>
+</html>

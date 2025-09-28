@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/basic.css">
+    <title>Movies</title>
+</head>
+
+<body>
+    <%- include("C://CapstoneProject/views/includes/navbar.ejs") %>
+        
+        <%    for(let Theater of Locations) { %>
+        <!-- <a href="/Home/<%= home.id %>/Theater/<%= Theater.id %>">              -->
+        <div class="hor">
+        <div class="theatre-list">
+                <img class="th-img" src="<%= Theater.img %>" alt="">
+            </div>
+            <div class="th-name">
+            <h3><%= Theater.name %></h3> <br>
+            <h3><%= Theater.loc %></h3>
+            </div>
+
+            <form action="/Home/Theater/<%= Theater.id %>/locate" method="post">
+                <input type="hidden" name="theaterId" value="<%= Theater.id %>">
+                <button class="btn-loc" type="submit">
+                    <img class="lb" src="/images/locate.png" alt=""> <h4>Locate</h4>
+                </button>
+            </form>
+            <a href="/Home/<%= home.id %>/Theater/<%= Theater.id %>/book">
+                <button class="btn-book" type="button">
+                    <img class="lb" src="/images/book.png" alt="">
+                    <h4>Book Here</h4>
+                </button>
+            </a>
+            </div>
+</body>
+</html>

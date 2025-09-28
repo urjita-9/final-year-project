@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="home_icon.png">
+    <script src="./cors.js"></script>
+    <title>Home</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Comic Sans MS";
+}
+a {
+    text-decoration: none;
+    color: #adadad;
+    transition: color 0.3 ease;
+}
+
+.btn {
+    display: inline-block;
+    padding: .5rem 1rem;
+    background-color: #43d7cd;
+    border-radius: 2rem;
+    color: #1e1f26;
+    transition: backgroud-color 0.3 ease;
+}
+
+.btn:hover {
+    background-color: #1bb3a8;
+}
+
+.btn-l {
+    width: 100%;
+    text-align: center;
+}
+
+body {
+    background: linear-gradient(to right top, #10131a, #1e1f26);
+    color: #fff;
+    justify-content: space-evenly;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1rem;
+}
+
+.left-content,
+.right-content {
+    display: flex;
+    align-items: center;
+}
+
+.navigation {
+    display: flex;
+    list-style: none;
+    margin-left: 1rem;
+    font-size: large;
+    padding-left: 10vw;
+}
+
+.navigation li {
+    margin-right: 1rem;
+    padding-left: 3vw;
+    font-size: large;
+    color: #adadad;
+    transition: transform 0.3s ease, color 0.3s ease; /* Fix the typo in transition property */
+}
+
+.navigation li:hover {
+    color: #1bb3a8;
+    transform: scale(1.2); 
+}
+
+.navigation li:not(:hover) {
+    transform: scale(1); /* Reset size for non-hovered items */
+    color: #adadad; /* Reset color for non-hovered items */
+}
+
+.active {
+    color: #1bb3a8;
+}
+
+.filter,
+.cart,
+.help,
+.menu {
+    position: relative;
+    width: 2vw;
+    height: 4.5vh;
+}
+
+.filter,
+.cart,
+.help {
+    margin-right: 1rem;
+}
+
+.menu {
+    margin-left: .8rem;
+}
+
+.filter,
+.menu {
+    display: none;
+}
+
+/* .profile-img-box {
+    position: relative;
+    height: 3vh;
+    width: 3vw;
+    border-radius: 50%;
+    overflow: hidden;
+} */
+
+img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.main-container {
+    color: #adadad;
+    display: grid;
+    gap: 1rem;
+    float: left;
+    padding-left: 7vw;
+    padding-right: 7vw;
+}
+
+.upcoming-img-box {
+    position: relative;
+    height: 60vh;
+    width:auto;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.upcoming-title {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: #2686ac;
+    background-color: #1e1f26;
+    padding: .5rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid #1bb3a8;
+    font-weight: 500;
+}
+
+.search-container {
+  text-align: center;
+  margin-top: 1vh;
+  padding-left: 1vw;
+  background-color: white;
+  border-radius: 30px;
+  padding-right: 1.5vw;
+  height: 6.9vh;
+}
+
+/* input[type="text"] {
+  padding: 10px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+} */
+
+.buttons {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+}
+
+.btn-alt, .bookNow, .playTrailer{
+    background-color: #1e1f26;
+    color: #1bb3a8;
+    border: 1px solid #1bb3a8;
+    margin-left: 1rem;
+    padding: 8px;
+    border-radius: 20px;
+}
+
+.btn-alt:hover, .bookNow:hover, .playTrailer:hover {
+    color: #1e1f26;
+    background-color: #1bb3a8;
+    padding: 8px;
+    border-radius: 20px;
+}
+
+.movies-container {
+    padding-bottom: 1rem;
+    width: 84vw;
+}
+
+.current-movies {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: -2rem;
+}
+
+.current-movie {
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+.cm-img-box {
+    position: relative;
+    height: 50vh;
+    width: auto;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+    overflow: hidden;
+}
+
+.movie-title {
+    color: #fff;
+    margin-bottom: .2rem;
+}
+
+
+
+
+
+.booking {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.price {
+    color: #2686ac;
+}
+
+.cm-img-box img {
+    transition: transform 0.3s ease;
+}
+
+.cm-img-box:hover img {
+    transform: scale(1.2); 
+}
+
+.logo {
+    position: absolute;
+    top: 1.5vh;
+    left: 1vw;
+    width: 13vw; /* Adjust the width as needed */
+    height: auto; /* Maintain the aspect ratio */
+}
+
+input[type="text"] {
+    padding: 1vw;
+    width: 30vw;
+    border: 0px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    /* text-align: left; */
+}
+
+input[type="text"]:focus {
+        outline: none;  /* Removes the default focus outline */
+        border-color: transparent;  /* Hides the border color */
+        box-shadow: none;  /* Hides any box shadow */
+    }
+
+/* .search-container {
+            position: relative;
+        } */
+
+
+.slideshow-container {
+        max-width: 1000px;
+        margin: auto;
+        overflow: hidden;
+}
+
+.prev{
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width:max-content;
+  margin-top: -2.2vh;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 3px 0 0 3px;
+  user-select: none;
+  left: 0%;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width:max-content;
+  margin-top: -2.2vh;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(83, 78, 78, 0.8);
+}
+
+.text {
+  color: #f2f2f2;
+  font-size: larger;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  top: 0;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #000000;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  position: absolute;
+  bottom: 3vh;
+}
+
+.dot:nth-child(1) {
+    left: 41vw;
+}
+
+.dot:nth-child(2) {
+    left: 42.5vw; 
+}
+
+.dot:nth-child(3) {
+    left: 44vw; 
+}
+
+.dot:nth-child(4) {
+    left: 45.5vw; 
+}
+
+.dot:nth-child(5) {
+    left: 47vw; 
+}
+
+
+.dot:hover {
+  background-color: #2d2c2c;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .7}
+  to {opacity: 1}
+}
+
+.buttonsB{
+    position: absolute;
+    padding-top: 1vh;
+    padding-left: 1vw;
+}
+
+.icon{
+    overflow: auto;
+    position: relative;
+    height: 4vh;
+    width: 2vw;
+    top: 0vh;
+    left: 0px;
+}
+
+.search-bar{
+    padding-left: 5vw;
+    height: 6.5vh;
+
+}
+
+
+.right-content{
+    padding: 5px;
+    background-color: #535558;
+    border-radius: 20px;
+    left: 0;
+    /* right: 0; */
+    cursor: pointer;
+    text-align: left;
+}
+
+.login{
+    left: 0;
+    top: 0;
+}
+
+.popup {
+    display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            /* display: flex; */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+        }
+        .popup iframe {
+            width: 60%; /* Adjust width as needed */
+            height: 70vh; /* Adjust height as needed */
+            border: none;
+            border-radius: 8px;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+
+
+
+
+
+
+    /* suggestion box ke liye css */
+    .search-container {
+    position: relative;
+    margin-top: 0vh;
+    padding-left: 1vw;
+    background-color: white;
+    border-radius: 30px;
+    padding-right: 1.5vw;
+    height: 6.9vh;
+    display: flex;
+    align-items: center;
+}
+
+.suggestions-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 0px solid #ccc;
+    border-radius: inherit;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestions-container div {
+    padding: 10px;
+    cursor: pointer;
+    border: 0px solid #ccc;
+    color: black; /* Set text color to black */
+    text-align: left;
+}
+
+.suggestions-container div:last-child {
+    border-bottom: none;
+}
+
+
+
+.theater
+{
+    height: 15vh;
+    width: 85vw;
+    background-color: #3638388e;
+}
+
+    </style>
+</head>
+
+<body>
+    <section class="top-bar">
+        <div class="left-content">
+            <img src="logo.png" class="logo" onclick="neWin()">
+                <ul class="navigation">
+                <li><a class="active" href="#">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="#">Theaters</a></li>
+                <li><a href="#">TV Shows</a></li>
+            </ul>
+            <div class="search-bar" onclick="showSlides()">
+            <div class="search-container">
+                <img src="search.png" class="icon">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <div id="suggestions-container" class="suggestions-container"></div>                
+              </div>
+            </div>
+        </div>
+        <div class="right-content">
+            
+            <img src="login icon.png" onclick="acc()" class="help">
+            <div class="login" onclick="acc()">Account    
+            
+        </div>
+               
+        </div>
+    </section>
+
+    <section class="main-container">
+
+
+        <div class="theater" id="theaterList">
+            <!-- Theater information will be added here -->
+        </div>
+        <!-- <div class="theater">
+            <h4>Abhiruchi City Pride: Sinhagad Road</h4>
+        </div>
+
+        <div class="theater">
+            <h4>Bollywood Multiplex: Kharadi</h4>
+        </div>
+
+        <div class="theater">
+            <h4>Abhiruchi City Pride: Sinhagad Road</h4>
+        </div>
+
+        <div class="theater">
+            <h4>Abhiruchi City Pride: Sinhagad Road</h4>
+        </div>
+
+        <div class="theater">
+            <h4>Abhiruchi City Pride: Sinhagad Road</h4>
+        </div>
+
+        <div class="theater">
+            <h4>Abhiruchi City Pride: Sinhagad Road</h4>
+        </div>
+
+        <div class="theater">
+            <h4>Abhiruchi City Pride: Sinhagad Road</h4>
+        </div>
+
+        <div class="theater">
+            <h4>Abhiruchi City Pride: Sinhagad Road</h4>
+        </div> -->
+    </section>
+
+    <script>
+        function neWin() {
+                var url = "home.html";
+                window.location.href = url;
+            }
+            function acc() {
+                var url = "login.html";
+                var usr = "";
+                 if(usr=="")
+                {
+                     window.location.href = url;
+                }
+            }
+    </script>
+
+
+<!-- Add this script at the end of the <body> section -->
+    <script src="./cors.js"></script>
+    <script>
+        function displayMovieTimings(movieTimings) {
+    var theaterList = document.getElementById("theaterList");
+
+    movieTimings.forEach(function (theater) {
+        var theaterDiv = document.createElement("div");
+        theaterDiv.classList.add("theater");
+
+        var theaterName = document.createElement("h4");
+        theaterName.textContent = theater.name;
+
+        var movieList = document.createElement("div"); // Changed to div for button container
+
+        theater.movies.forEach(function (movie) {
+            var movieButton = document.createElement("button"); // Create a button for each movie
+            movieButton.textContent = movie.title + " - " + movie.timing;
+            movieButton.classList.add("btn", "movie-btn"); // Add btn and movie-btn classes
+            movieButton.addEventListener("click", function () {
+                alert("You clicked: " + movie.title + " - " + movie.timing);
+                // Here you can add your logic for what happens when a button is clicked
+            });
+
+            movieList.appendChild(movieButton);
+        });
+
+        theaterDiv.appendChild(theaterName);
+        theaterDiv.appendChild(movieList);
+
+        theaterList.appendChild(theaterDiv);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("http://localhost:8080/movie_timings.json")
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            // Handle the fetched data
+            displayMovieTimings(data);
+        })
+        .catch(function (error) {
+            console.error("Error fetching movie data:", error);
+        });
+});
+
+
+    </script>
+      
+</body>

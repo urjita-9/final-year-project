@@ -1,0 +1,271 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+
+<head> 
+	<meta charset="UTF-8"> 
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0"> 
+	<title>Online Payment-Page</title> 
+
+
+<style>
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap'); 
+
+* { 
+	margin: 0; 
+	padding: 0; 
+	box-sizing: border-box; 
+	border: none; 
+	outline: none; 
+	font-family: 'Poppins', sans-serif; 
+	text-transform: capitalize; 
+	transition: all 0.2s linear; 
+} 
+
+.container { 
+	display: flex; 
+	justify-content: center; 
+	align-items: center; 
+	min-height: 100vh; 
+	padding: 25px; 
+	background: #5e6869; 
+} 
+
+.container form { 
+	width: 700px; 
+	padding: 20px; 
+	background: #fff; 
+	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2); 
+} 
+
+.container form .row { 
+	display: flex; 
+	flex-wrap: wrap; 
+	gap: 15px; 
+} 
+
+.container form .row .col { 
+	flex: 1 1 250px; 
+} 
+
+.col .title { 
+	font-size: 20px; 
+	color: rgb(70, 203, 161); 
+	padding-bottom: 5px; 
+} 
+
+.col .inputBox { 
+	margin: 15px 0; 
+} 
+
+.col .inputBox label { 
+	margin-bottom: 10px; 
+	display: block; 
+} 
+
+.col .inputBox input, 
+.col .inputBox select { 
+	width: 100%; 
+	border: 1px solid #ccc; 
+	padding: 10px 15px; 
+	font-size: 15px; 
+} 
+
+.col .inputBox input:focus, 
+.col .inputBox select:focus { 
+	border: 1px solid #000; 
+} 
+
+.col .flex { 
+	display: flex; 
+	gap: 15px; 
+} 
+
+.col .flex .inputBox { 
+	flex: 1 1; 
+	margin-top: 5px; 
+} 
+
+.col .inputBox img { 
+	height: 34px; 
+	margin-top: 5px; 
+	filter: drop-shadow(0 0 1px #000); 
+} 
+
+.container form .submit_btn { 
+	width: 100%; 
+	padding: 12px; 
+	font-size: 17px; 
+	background: rgb(8, 193, 150); 
+	color: #fff; 
+	margin-top: 5px; 
+	cursor: pointer; 
+	letter-spacing: 1px; 
+} 
+
+.container form .submit_btn:hover { 
+	background: rgb(8, 113, 89);
+} 
+
+input::-webkit-inner-spin-button, 
+input::-webkit-outer-spin-button { 
+	display: none; 
+}
+
+	</style>
+</head> 
+
+<body> 
+	<div class="container"> 
+
+		<form action="#"> 
+
+			<div class="row"> 
+
+				<div class="col"> 
+					<h3 class="title"> 
+						Personal Details 
+					</h3> 
+
+					<div class="inputBox"> 
+						<label for="name"> 
+							Full Name: 
+						</label> 
+						<input type="text" id="name"
+							placeholder="Enter your full name"
+							required> 
+					</div> 
+
+					<div class="inputBox"> 
+						<label for="email"> 
+							Email: 
+						</label> 
+						<input type="text" id="email"
+							placeholder="Enter email address"
+							required> 
+					</div> 
+
+					<div class="inputBox"> 
+						<label for="address"> 
+							Address: 
+						</label> 
+						<input type="text" id="address"
+							placeholder="Enter address"
+							required> 
+					</div> 
+
+					<div class="inputBox"> 
+						<label for="city"> 
+							City: 
+						</label> 
+						<input type="text" id="city"
+							placeholder="Enter city"
+							required> 
+					</div> 
+
+					<div class="flex"> 
+
+						<div class="inputBox"> 
+							<label for="state"> 
+								State: 
+							</label> 
+							<input type="text" id="state"
+								placeholder="Enter state"
+								required> 
+						</div> 
+
+						<div class="inputBox"> 
+							<label for="zip"> 
+								Pin Code: 
+							</label> 
+							<input type="number" id="zip"
+								placeholder="123 456"
+								required> 
+						</div> 
+
+					</div> 
+
+				</div> 
+				
+
+			</div> 
+
+			<form id="personalDetailsForm">
+				<input type="submit" value="Proceed to QR" onclick="ticket()" class="submit_btn">
+			</form> 
+		</form> 
+
+	</div> 
+	<script>
+
+		
+const popup = document.getElementById('popup');
+const closeButton = document.getElementById('close-btn');
+
+function closePopup() {
+    const iframe = popup.querySelector('iframe');
+    iframe.src = ''; 
+    popup.style.display = 'none';
+    document.body.style.overflow = ''; 
+}
+
+closeButton.addEventListener('click', closePopup);
+
+function openPopup(TicketUrl) {
+    const progressBar = document.getElementById('progressBar');
+    const progressLabel = document.querySelector('.progress-label');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+    loadingOverlay.style.display = 'flex';
+
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 10;
+        progressBar.style.width = `${progress}%`;
+        if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+                popup.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                const iframe = popup.querySelector('iframe');
+                iframe.src = TicketUrl;
+            }, 1000); 
+        }
+    }, 300); 
+}
+
+function ticket(){
+        window.location.href = 'ticket.html';
+    }
+
+
+		let cardNumInput = 
+	document.querySelector('#cardNum') 
+
+cardNumInput.addEventListener('keyup', () => { 
+	let cNumber = cardNumInput.value 
+	cNumber = cNumber.replace(/\s/g, "") 
+
+	if (Number(cNumber)) { 
+		cNumber = cNumber.match(/.{1,4}/g) 
+		cNumber = cNumber.join(" ") 
+		cardNumInput.value = cNumber 
+	} 
+})
+
+
+document.getElementById('personalDetailsForm').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+
+        proceedToQR();
+    });
+
+    function proceedToQR() {
+        window.location.href = 'ticket.html'; 
+    }
+
+	</script> 
+</body> 
+
+</html>

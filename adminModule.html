@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="home_icon.png">
+    <title>ADMIN</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Comic Sans MS";
+}
+a {
+    text-decoration: none;
+    color: #adadad;
+    transition: color 0.3 ease;
+}
+
+body {
+    background: linear-gradient(to right top, #10131a, #1e1f26);
+    color: #fff;
+    justify-content: space-evenly;
+}
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1rem;
+}
+
+.left-content,
+.right-content {
+    display: flex;
+    align-items: center;
+}
+
+.navigation {
+    display: flex;
+    list-style: none;
+    margin-left: 1rem;
+    font-size: large;
+    padding-left: 10vw;
+}
+
+.navigation li {
+    margin-right: 1rem;
+    padding-left: 3vw;
+    font-size: large;
+    color: #adadad;
+    transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+.navigation li:hover {
+    color: #1bb3a8;
+    transform: scale(1.2); 
+}
+
+.navigation li:not(:hover) {
+    transform: scale(1); 
+    color: #adadad; 
+}
+
+.active {
+    color: #1bb3a8;
+}
+
+.help{
+    position: relative;
+    width: 2vw;
+    height: 4.5vh;
+}
+
+.help {
+    margin-right: 1rem;
+}
+
+
+img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo {
+    position: absolute;
+    top: 1.5vh;
+    left: 1vw;
+    width: 13vw; 
+    height: auto; 
+}
+
+.right-content {
+    margin-right: 40px;
+    padding: 2px;
+    border-radius: 15px;
+    border: 1px solid white; 
+    left: 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.right-content:hover
+{
+    background-color: #555657;
+}
+
+.login{
+margin-left: -10%;
+}
+
+.dropbtn {
+    background-color: #1e1f26;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1e1f26;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #1bb3a8;
+    padding: 12px 6px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #1bb3a8;
+}
+
+.dropdown-content a:hover {
+    background-color: #1bb3a8;
+    color: #131315;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropbtn:hover {
+    background-color: #1bb3a8;
+}
+
+::-webkit-scrollbar{
+    width: 1vw;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #404343;
+}
+
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(#2d645b, #64c0af);
+    border-radius: 1rem;
+}
+
+</style>
+</head>
+
+<body>
+    <section class="top-bar">
+
+        <div class="left-content">
+            <img src="logo.png" class="logo" onclick="neWin()">
+                <ul class="navigation">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">All Movies</a></li>
+                <li><a href="#">All Theaters</a></li>
+                <li><a href="#">Add New Movie</a></li>
+                <li><a href="#">Add New Theater</a></li>
+            </ul>
+           
+        </div>
+    <div class="right-content">
+        <img src="login icon.png" class="help">
+        <div class="dropdown">
+            <button class="login dropbtn">Account</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="openLogin()">Login</a>
+                <a href="#" onclick="openRegister()">Register</a>
+                <a href="#" onclick="logout()">Log out</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </section> <br><br>
+    
+
+</body>
+</html>

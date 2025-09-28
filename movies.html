@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Comic Sans MS";
+}
+a {
+    text-decoration: none;
+    color: #adadad;
+    transition: color 0.3 ease;
+}
+
+.btn {
+    display: inline-block;
+    padding: .5rem 1rem;
+    background-color: #43d7cd;
+    border-radius: 2rem;
+    color: #1e1f26;
+    transition: backgroud-color 0.3 ease;
+}
+
+.btn:hover {
+    background-color: #1bb3a8;
+}
+
+.btn-l {
+    width: 100%;
+    text-align: center;
+}
+
+body {
+    background: linear-gradient(to right top, #10131a, #1e1f26);
+    color: #fff;
+    display: grid;
+    /* grid-template-columns: 1000px;
+    justify-content: space-evenly; */
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1rem;
+}
+
+.left-content,
+.right-content {
+    display: flex;
+    align-items: center;
+}
+
+/* .title {
+    margin-right: 3rem;
+    color: #1bb3a8;
+} */
+
+.navigation {
+    display: flex;
+    list-style: none;
+    margin-left: 1rem;
+    font-size: large;
+    padding-left: 10vw;
+}
+
+.navigation li {
+    margin-right: 1rem;
+    padding-left: 3vw;
+    font-size: large;
+    color: #adadad;
+    transition: transform 0.3s ease, color 0.3s ease; /* Fix the typo in transition property */
+}
+
+.navigation li:hover {
+    color: #1bb3a8;
+    transform: scale(1.2); 
+}
+
+.navigation li:not(:hover) {
+    transform: scale(1); /* Reset size for non-hovered items */
+    color: #adadad; /* Reset color for non-hovered items */
+}
+
+.active {
+    color: #1bb3a8;
+}
+
+.filter,
+.cart,
+.help,
+.menu {
+    position: relative;
+    width: 2vw;
+    height: 4.5vh;
+}
+
+.filter,
+.cart,
+.help {
+    margin-right: 1rem;
+}
+
+.menu {
+    margin-left: .8rem;
+}
+
+.filter,
+.menu {
+    display: none;
+}
+
+/* .profile-img-box {
+    position: relative;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+} */
+
+img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.main-container {
+    color: #adadad;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
+    padding-right: 9vw;
+    padding-left: 4vw;
+}
+
+
+.sidebar {
+    background: linear-gradient(45deg, rgba(255, 255, 255, .05), rgba(205, 140, 56, .15));
+    backdrop-filter: blur(5px);
+    height: fit-content;
+    border-radius: 1rem;
+    padding: 2rem 2.5rem;
+}
+
+.sidebar-groups {
+    margin-bottom: 1rem;
+}
+
+.sg-title {
+    margin-bottom: .5rem;
+    color: #fff;
+}
+
+input {
+    margin-bottom: .6rem;
+}
+
+input[type=checkbox]:checked {
+    accent-color: #1bb3a8;
+}
+
+input[type=radio]:checked {
+    accent-color: #1bb3a8;
+}
+
+label {
+    margin-left: .5rem;
+}
+
+
+/* .upcoming-img-box {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.upcoming-title {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: #2686ac;
+    background-color: #1e1f26;
+    padding: .5rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid #1bb3a8;
+    font-weight: 500;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+}
+
+.btn-alt {
+    background-color: #1e1f26;
+    color: #1bb3a8;
+    border: 1px solid #1bb3a8;
+    margin-left: 1rem;
+}
+
+.btn-alt:hover {
+    color: #1e1f26;
+    background-color: #1bb3a8;
+} */
+
+/* .movies-container {
+    padding-bottom: 1rem;
+} */
+
+.current-movies {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: -2rem;
+}
+
+.current-movie {
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+.cm-img-box {
+    position: relative;
+    height: 250px;
+    width: auto;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+    overflow: hidden;
+}
+
+.movie-title {
+    color: #fff;
+    margin-bottom: .2rem;
+}
+
+
+
+
+
+
+
+.booking {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.price {
+    color: #2686ac;
+}
+
+
+
+
+
+
+.cm-img-box img {
+    transition: transform 0.3s ease;
+}
+
+.cm-img-box:hover img {
+    transform: scale(1.2); 
+}
+
+.search-container {
+  text-align: center;
+  margin-top: 0vh;
+  padding-left: 1vw;
+  background-color: white;
+  border-radius: 30px;
+  padding-right: 1.5vw;
+  height: 6.9vh;
+}
+
+.logo {
+    position: absolute;
+    top: 1.5vh;
+    left: 1vw;
+    width: 13vw; /* Adjust the width as needed */
+    height: auto; /* Maintain the aspect ratio */
+}
+
+input[type="text"] {
+    padding: 1vw;
+    width: 30vw;
+    border: 0px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input[type="text"]:focus {
+        outline: none;  /* Removes the default focus outline */
+        border-color: transparent;  /* Hides the border color */
+        box-shadow: none;  /* Hides any box shadow */
+    }
+
+    .icon{
+    overflow: auto;
+    position: relative;
+    height: 4vh;
+    width: 2vw;
+    top: 1vh;
+    left: 0px;
+}
+
+.search-bar{
+    padding-left: 5vw;
+    height: 6.5vh;
+}
+
+
+.right-content {
+    padding: 4px;
+    border-radius: 15px;
+    border: 1px solid white; 
+    left: 0;
+    cursor: pointer;
+    text-align: left;
+}
+.right-content:hover
+{
+    background-color: #3a97ae;
+    
+}
+
+.login{
+    left: 0;
+    padding: 5px;
+}
+
+
+            </style>
+</head>
+
+<body>
+    <section class="top-bar">
+        <div class="left-content">
+            <img src="logo.png" class="logo" onclick="neWin()">
+                <ul class="navigation">
+                <li><a href="home.html">Home</a></li>
+                <li><a class="active" href="movies.html">Movies</a></li>
+                <li><a href="#">Theaters</a></li>
+                <li><a href="#">TV Shows</a></li>
+            </ul>
+            <div class="search-bar" onclick="showSlides()">
+            <div class="search-container">
+                <img src="search.png" class="icon">
+                  <input type="text" placeholder="Search...">
+              </div>
+            </div>
+        </div>
+        <div class="right-content">
+            
+            <img src="login icon.png" onclick="acc()" class="help">
+            <div class="login" onclick="acc()">Account    
+            
+        </div>
+               
+        </div>
+    <!-- </div> -->
+
+    </section> <br><br>
+
+
+        <section class="main-container">
+            <div class="sidebar">
+                <form action="#">
+                    <div class="sidebar-groups">
+                        <h3 class="sg-title">Categories</h3>
+                        <input type="checkbox" id="adventure" name="adventure" value="adventure">
+                        <label for="adventure">Adventure</label><br>
+                        <input type="checkbox" id="action" name="action" value="action">
+                        <label for="action">Action</label><br>
+                        <input type="checkbox" id="animation" name="animation" value="animation">
+                        <label for="animation">Animation</label><br>
+                        <input type="checkbox" id="comedy" name="comedy" value="comedy">
+                        <label for="comedy">Comedy</label><br>
+                        <input type="checkbox" id="science" name="science" value="science">
+                        <label for="science">Science Fiction</label><br>
+                        <input type="checkbox" id="thriller" name="thriller" value="thriller">
+                        <label for="thriller">Thriller</label><br>
+                        <input type="checkbox" id="history" name="history" value="history">
+                        <label for="history">History</label><br>
+                        <input type="checkbox" id="documentary" name="documentary" value="documentary">
+                        <label for="documentary">Documentary</label><br>
+                        <input type="checkbox" id="fantasy" name="fantasy" value="fantasy">
+                        <label for="fantasy">Fantasy</label><br>
+    
+                    </div>
+                    <div class="sidebar-groups">
+                        <h3 class="sg-title">Language</h3>
+                        <input type="checkbox" id="english" name="english" value="english">
+                        <label for="english">English</label><br>
+                        <input type="checkbox" id="hindi" name="hindi" value="hindi">
+                        <label for="hindi">Hindi</label><br>
+                        <input type="checkbox" id="spanish" name="marathi" value="marathi">
+                        <label for="marathi">Marathi</label><br>
+                    </div>
+                    <div class="sidebar-groups">
+                        <h3 class="sg-title">Time</h3>
+                        <input type="radio" id="morning" name="time" value="morning">
+                        <label for="morning">Morning</label><br>
+                        <input type="radio" id="night" name="time" value="night">
+                        <label for="night">Night</label><br>
+                    </div>
+                    <div class="sidebar-groups">
+                        <a href="#" class="btn-l btn">Apply Filters</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="movies-container">
+                <div class="current-movies">
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <a href="bookanimal.html" class="card">
+                            <img src="animal.jpg" alt="">
+                        </a>
+                        </div>
+                        <h3 class="movie-title">ANIMAL</h3>
+                    </div>
+    
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <a href="bookdunki.html" class="card">
+                            <img src="dunki.jpg" alt="">
+                            </a>
+                        </div>
+                        <h3 class="movie-title">DUNKI</h3> 
+                    </div>
+    
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <a href="booksalaar.html" class="card">
+                            <img src="MadamWeb.jpg" alt="">
+                            </a>
+                        </div>
+                        <h3 class="movie-title">Madam Web</h3>
+                    </div>
+    
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <a href="booksalaar.html" class="card">
+                            <img src="Shivaji.jpg" alt="">
+                            </a>
+                        </div>
+                        <h3 class="movie-title">Shivrayancha Chhava</h3>
+                    </div>
+    
+                    
+    
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <a href="booksalaar.html" class="card">
+                            <img src="salaar.jpeg" alt="">
+                            </a>
+                        </div>
+                        <h3 class="movie-title">SALAAR</h3>
+                    </div>
+    
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <a href="bookmarvels.html" class="card">
+                            <img src="themarvels.jpg" alt="">
+                            </a>
+                        </div>
+                        <h3 class="movie-title">THE MARVELS</h3> 
+                    </div>
+    
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <a href="booksalaar.html" class="card">
+                            <img src="TBMAUJ.jpg" alt="">
+                            </a>
+                        </div>
+                        <h3 class="movie-title">Teri Baaton Mein Aisa Uljha Jiya</h3>
+                    </div>
+    
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <a href="bookfighter.html" class="card">
+                            <img src="Fighter-23.jpg">
+                            </a>
+                        </div>
+                        <h3 class="movie-title">FIGHTER</h3>
+                    </div>
+    
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <img src="hanuman.jpg" alt="">
+                        </div>
+                        <h3 class="movie-title">HANUMAN</h3> 
+                    </div>
+    
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <a href="bookanyonebutyou.html">
+                            <img src="anyone but you.jpg" alt="">
+                            </a>
+                        </div>
+                        <h3 class="movie-title">ANYONE BUT YOU</h3>
+                    </div>
+    
+                        <div class="current-movie">
+                            <div class="cm-img-box">
+                                <a href="bookaqua.html" class="card">
+                                <img src="aquaman.jpg" alt="">
+                                </a>
+                            </div>
+                            <h3 class="movie-title">AQUAMAN AND THE LOST KINGDOM</h3> 
+                        </div>
+    
+                    <div class="current-movie">
+                        <div class="cm-img-box">
+                            <img src="12th fail.jpg" alt="">
+                        </div>
+                        <h3 class="movie-title">12th FAIL</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+
+<script>
+    function neWin() {
+            var url = "home.html";
+            window.location.href = url;
+        }
+        function acc() {
+            var url = "login.html";
+            var usr = "";
+             if(usr=="")
+            {
+                 window.location.href = url;
+            }
+        }
+</script>
+</html>

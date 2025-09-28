@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="bookstyle.css">
+    <link rel="shortcut icon" href="book_icon.png">
+    <title>Book | Animal</title>
+
+<style>
+
+.all-seats {
+    grid-template-columns: repeat(1, 1fr) 12% repeat(5, 1fr) 12% repeat(3, 1fr);
+    display: grid;
+    grid-gap: 15px;
+    margin: 60px 0;
+    margin-top: -32vh;
+    margin-left: 10%;
+    position: relative;
+}
+
+.seat {
+    margin-top: 0px;
+    width: 30px;
+    height: 15px;
+    background: white;
+    border-radius: 0.5mm;
+    outline: 0.3mm solid rgb(180, 180, 180);
+    cursor: pointer;
+    }
+.all-seats input:checked + label {
+    background: rgb(28, 185, 120);
+    outline: none;
+    }
+.seat.booked {
+    background: rgb(111, 109, 109);
+    outline: none;
+    pointer-events: none;
+    }
+
+input {
+    display: none;
+    }
+.price {
+    margin-top: -40px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }
+.price button {
+    background: rgb(28, 185, 120);
+    color: white;
+    font-family: poppins;
+    font-size: 14px;
+    padding: 7px 14px;
+    border-radius: 2mm;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    }
+    
+.total{
+    font-size: large;
+    margin-left: -1.5vw;
+    color: #e6e6e6;
+    }
+
+.selected-seats {
+    font-size: large;
+    margin-left: 50%; /* Center the text horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    margin-top: -5%;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+}
+
+.seats-name{
+    margin-top: -3%;
+    color: white;
+    line-height: 1.9;
+}
+
+
+
+
+
+.popup {
+    display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            /* display: flex; */
+            justify-content: center; 
+            align-items: center; 
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.7); 
+        }
+        .popup iframe {
+            width: 60%; 
+            height: 70vh; 
+            border: none;
+            border-radius: 8px;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: 20vh;
+            right: 20vw;
+            padding: 8px 16px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+ 
+</head>
+<body>
+    <div class="book">
+        <div class="left">
+            <img src="animal.jpg" alt="" id="poster">
+            <div class="play">
+                <i class="bi bi-play-fill" id="play"></i>
+            </div>
+            <div class="cont">
+                <h6>Directed by</h6>
+                <p>Sandeep Reddy Vanga</p>
+                <h6>Starring</h6>
+                <p>	Ranbir Kapoor<br>
+                    Rashmika<br>
+                    Bobby Deol</p>
+                    <h6>Action, Crime, Drama</h6>   
+                    <p><h5>IMDB ★ 6.3</h5></p>
+                    
+            </div>
+        </div>
+        <div class="right">
+
+            <video src="animal trailer.mp4" id="video" ></video>
+
+            <div class="head_time">
+                <h1 id="title">ANIMAL</h1>
+                <div class="time">
+                    <h6><i class="bi bi-clock"></i> 3Hr 21Min</h6>
+                    <button>A</button>
+                </div>
+            </div>
+
+            <div class="date_type">
+                <div class="left_card">
+                    <h6 class="title">Upcoming Dates</h6>
+                    <div class="card_month crd"></div>
+                </div>
+                <div class="right_card">
+                    <h6 class="title">Show Time</h6>
+                    <div class="card_month crd">
+                        <li><h6>2D</h6>
+                            <h6>10:00</h6>
+                        </li>
+                        <li><h6>2D</h6>
+                            <h6>12:30</h6>
+                        </li>
+                        <li><h6>2D</h6>
+                            <h6>14:00</h6>
+                        </li>
+                        <li><h6>2D</h6>
+                            <h6>17:00</h6>
+                        </li>
+                        <li><h6>2D</h6>
+                            <h6>18:00</h6>
+                        </li>
+                        <li><h6>3D</h6>
+                            <h6>20:00</h6>
+                        </li>
+                        <li><h6>3D</h6>
+                            <h6>10:00</h6>
+                        </li>
+                        <li><h6>4DX</h6>
+                            <h6>21:00</h6></li>
+
+                        <li><h6>4DX</h6>
+                            <h6>22:30</h6></li>
+
+                        <li><h6>4DX</h6>
+                            <h6 class="h6_active">12:00</h6></li>
+
+                        <li><h6>4DX</h6>
+                            <h6>12:30</h6></li>
+                    </div>
+                </div>
+            </div>
+            <div class="screen" id="screen">
+                Screen
+            </div>
+        <div class="seats-name">
+        <p>A <br> B <br> C <br> D <br> E <br> F <br> G </p>
+        </div>
+            <div class="center">
+                
+                <div class="tickets">
+                    
+                    <div class="seats">
+                        <div class="all-seats">
+                        </div>
+                    </div>
+                </div>
+                <div class="price">
+                    <div class="total">
+                      <span>Tickets : <span class="count">0</span></span>
+                      <br>
+                      <span>Price : <span class="amount">0</span></span>
+                    </div>
+                    <button id="bookButton" type="button" onclick="Ticket()" id="book">Book</button>
+                  </div>
+
+                  <div class="popup" id="popup">
+                    <button id="close-btn">Close</button>
+                    <iframe width="400" height="600" title="Ticket" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                  <div id="ticketsContainer"></div>
+
+            </div>
+              <script src="script.js"></script>
+
+              <div class="selected-seats" id="selectedSeatsDisplay" style="color: rgb(28, 185, 120)">
+                Selected Seats : 
+              </div>
+
+                <div class="details" id="det" style="color: white;">
+                <div class="details_chair">
+                    <li>Avalable</li>
+                    <li>Booked</li>
+                    <li>Selected</li>
+                </div>
+        </div>
+    </div> 
+</div>
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+    let seats = document.querySelector(".all-seats");
+    let selectedSeatsDisplay = document.getElementById("selectedSeatsDisplay");
+    let bookButton = document.getElementById("bookButton");
+    bookButton.addEventListener("click", function () {
+        Ticket();
+    });
+    let ticketsContainer = document.getElementById("ticketsContainer");
+
+  let rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G' , ];
+  let columns = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
+
+  for (let row of rows) {
+    for (let col of columns) {
+      let seatId = `${row}${col}`;
+      let randint = Math.floor(Math.random() * 3);
+      let booked = randint === 1 ? "booked" : "";
+      seats.insertAdjacentHTML(
+        "beforeend",
+        `<input type="checkbox" name="tickets" id="${seatId}" />
+         <label for="${seatId}" class="seat ${booked}"></label>`
+      );
+    }
+  }
+
+  let tickets = seats.querySelectorAll("input");
+  tickets.forEach((ticket) => {
+    ticket.addEventListener("change", () => {
+      let amount = document.querySelector(".amount").innerHTML;
+      let count = document.querySelector(".count").innerHTML;
+      amount = Number(amount);
+      count = Number(count);
+
+      if (ticket.checked) {
+        count += 1;
+        amount += 200;
+        ticket.nextElementSibling.classList.add("selected");
+      } else {
+        count -= 1;
+        amount -= 200;
+        ticket.nextElementSibling.classList.remove("selected");
+      }
+
+      document.querySelector(".amount").innerHTML = amount;
+      document.querySelector(".count").innerHTML = count;
+
+      updateSelectedSeats();
+    });
+  });
+
+  function updateSelectedSeats() {
+    let selectedSeats = document.querySelectorAll('.all-seats input:checked');
+    let selectedSeatsArr = Array.from(selectedSeats).map(seat => seat.id);
+    selectedSeatsDisplay.textContent = `Selected Seats : ${selectedSeatsArr.join(', ')}`;
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+            let currentDate = new Date();
+
+            function getNext14Days() {
+                let dateOptions = [];
+                for (let i = 0; i < 14; i++) {
+                    let date = new Date();
+                    date.setDate(currentDate.getDate() + i);
+                    let day = date.toLocaleString('default', { weekday: 'short' });
+                    let dayOfMonth = date.getDate();
+                    dateOptions.push(`<li><h6>${day}</h6><h6 class="date_point">${dayOfMonth}</h6></li>`);
+                }
+                return dateOptions.join('');
+            }
+
+            let dateOptionsHTML = getNext14Days();
+            document.querySelector(".card_month.crd").innerHTML = dateOptionsHTML;
+
+        });
+
+
+
+        const popup = document.getElementById('popup');
+const closeButton = document.getElementById('close-btn');
+// const playTrailerButton = document.getElementById('book');
+
+function closePopup() {
+    const iframe = popup.querySelector('iframe');
+    iframe.src = ''; // Stop the video
+    popup.style.display = 'none';
+    document.body.style.overflow = ''; 
+}
+
+closeButton.addEventListener('click', closePopup);
+
+function openPopup(TicketUrl) {
+    popup.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; 
+    const iframe = popup.querySelector('iframe');
+    iframe.src = videoUrl;
+}
+
+    function Ticket() {
+
+    const TicketUrl = "ticket.html";
+    openPopup(TicketUrl);
+
+
+}
+
+
+</script>
+</script>
+</body>
+</html>

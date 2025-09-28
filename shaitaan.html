@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="bookstyle.css">
+    <link rel="shortcut icon" href="book_icon.png">
+    <title>Book | Shaitaan</title>
+
+ 
+</head>
+<body>
+    <div class="book">
+        <div class="left">
+            <img src="shaitaanbook.jpeg" alt="" id="poster">
+            <div class="play">
+                <i class="bi bi-play-fill" id="play"></i>
+            </div>
+            <div class="cont">
+                <h6>Directed by</h6>
+                <p>Vikas Bahl</p>
+                <h6>Starring</h6>
+                <p>	Ajay Devgn<br>
+                    R.Madhavan<br>
+                    Jyothika Saravanan</p>
+                    <h6>Supernatural, Thriller</h6>
+                    <p><h5>IMDB ★ 7.8 </h5></p>
+                    
+            </div>
+        </div>
+        <div class="right">
+
+            <video src="shaitaan trailer.mp4" id="video" ></video>
+
+            <div class="head_time">
+                <h1 id="title">SHAITAAN</h1>
+                <div class="time">
+                    <h6><i class="bi bi-clock"></i> 2Hr 12Min</h6>
+                    <button>UA</button>
+                </div>
+            </div>
+
+            <div class="date_type">
+                <div class="left_card">
+                    <h6 class="title">Upcoming Dates</h6>
+                    <div class="card_month crd" id="selected-Date">
+                        <li><h6 class="date-option">MON 16</h6></li>
+                        <li><h6 class="date-option">TUE 17</h6></li>
+                        <li><h6 class="date-option">WED 18</h6></li>
+                        <li><h6 class="date-option">THU 19</h6></li>
+                        <li><h6 class="date-option">FRI 20</h6></li>
+                        <li><h6 class="date-option">SAT 21</h6></li>
+                        <li><h6 class="date-option">SUN 22</h6></li>
+                        <li><h6 class="date-option">MON 23</h6></li>
+                        <li><h6 class="date-option">TUE 24</h6></li>
+                        <li><h6 class="date-option">FRI 25</h6></li>
+                        <li><h6 class="date-option">SAT 26</h6></li>
+                    </div>
+                </div>
+                <div class="right_card">
+                    <h6 class="title">Show Time</h6>
+                    <div class="card_month crd" id="selectedShowTime">
+                        <li><h6 class="show-time-option">6:00</h6></li>
+                        <li><h6 class="show-time-option">9:30</h6></li>
+                        <li><h6 class="show-time-option">13:00</h6></li>
+                        <li><h6 class="show-time-option">16:30</h6></li>
+                        <li><h6 class="show-time-option">20:00</h6></li>
+                        <li><h6 class="show-time-option">23:30</h6></li>
+                        <li><h6 class="show-time-option">6:00</h6></li>
+                        <li><h6 class="show-time-option">9:30</h6></li>
+                        <li><h6 class="show-time-option">13:00</h6></li>
+                        <li><h6 class="show-time-option">13:00</h6></li>
+                        <li><h6 class="show-time-option">16:30</h6></li>
+                    </div>
+                </div>
+            </div>
+            <div class="screen" id="screen">
+                Screen
+            </div>
+        <div class="seats-name">
+        <p>A <br> B <br> C <br> D <br> E <br> F <br>G</p>
+        </div>
+            <div class="center">
+                
+                <div class="tickets">
+                    
+                    <div class="seats">
+                        <div class="all-seats">
+                        </div>
+                    </div>
+                </div>
+                <div class="price">
+                    
+                    <div class="total">
+                      <span>Tickets : <span class="count">0</span></span>
+                      <br>
+                      <span>Price : <span class="amount">0</span></span>
+                    </div>
+                    <button id="bookButton" type="button" onclick="Ticket()" id="book">Book</button>
+                  </div>
+
+                  <div class="popup" id="popup">
+                    <button type="button" id="close-btn" aria-label="Close">X</button>
+                    <iframe width="400" height="600" title="Ticket" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                  <div id="ticketsContainer"></div>
+
+            </div>
+        <form id="form">
+              <div class="selected-seats" id="selectedSeatsDisplay" style="color: rgb(136, 147, 143)">
+                Selected Seats : 
+              </div>
+        </form>
+
+                <div class="details" id="det" style="color: white;">
+                <div class="details_chair">
+                    <li>Avalable</li>
+                    <li>Booked</li>
+                    <li>Selected</li>
+                </div>
+        </div>
+    </div> </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-label">Your Ticket is generating</div>
+        </div>
+    </div>    
+
+<script src="book.js">
+
+localStorage.setItem('selectedMovie', 'SHAITAAN'); // Replace 'ANIMAL' with the actual movie name
+
+</script>
+
+
+</body>
+</html>
